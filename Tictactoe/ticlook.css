@@ -6,6 +6,11 @@
     display: inline;
     margin: auto 25px;
 }
+#restartButton{
+    display: flex;
+    height: 20px;
+
+}
 table{
     border: solid;
     margin: auto;
