@@ -11,7 +11,7 @@
           <li class="noSpace" id="infoLink" onclick="toggleRules()">Information</li>
         </div>
         <div class="space">
-          <li class="noSpace">something</li>
+          <li class="noSpace" id="undoButton">Undo</li>
         </div>
       </ul>
     </div>
@@ -57,6 +57,7 @@ Objective: The goal of Tic-Tac-Toe is to be the first player to form a line of t
         let gameOver = false;
         let playerXCount = 0;
         let playerOCount = 0;
+        const cellHistory = [];
 
         function checkWinner() {
           const winCombinations = [
@@ -94,6 +95,7 @@ Objective: The goal of Tic-Tac-Toe is to be the first player to form a line of t
           cells.forEach((cell) => {
             cell.textContent = "";
           });
+          cellHistory.length = 0; // Clear the cell history
           document.getElementById("resultMessage").textContent = "";
           currentPlayer = "X";
           gameOver = false;
@@ -109,11 +111,22 @@ Objective: The goal of Tic-Tac-Toe is to be the first player to form a line of t
           }
         }
 
+        function undoMove() {
+          if (cellHistory.length > 0) {
+            const cellIndex = cellHistory.pop();
+            cells[cellIndex].textContent = "";
+            currentPlayer = currentPlayer === "X" ? "O" : "X";
+            gameOver = false; // Reset game status
+            document.getElementById("resultMessage").textContent = "";
+          }
+        }
+
         function handleClick() {
           if (!gameOver && !this.textContent) {
             this.textContent = currentPlayer;
             checkWinner();
             currentPlayer = currentPlayer === "X" ? "O" : "X";
+            cellHistory.push(Array.from(cells).indexOf(this)); // Store the cell index
           }
         }
 
@@ -123,6 +136,9 @@ Objective: The goal of Tic-Tac-Toe is to be the first player to form a line of t
 
         const restartButton = document.getElementById("restartButton");
         restartButton.addEventListener("click", restartGame);
+
+        const undoButton = document.getElementById("undoButton");
+        undoButton.addEventListener("click", undoMove);
       });
 
       function toggleRules() {
