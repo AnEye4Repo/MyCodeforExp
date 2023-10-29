@@ -1,16 +1,50 @@
+body{
+    background-color: lavender;
+}
+.center{
+    text-align: center;
+    background-color: rgb(106, 101, 172);
+    display: inline-block;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: none;
+    color: rgb(41, 158, 208);
+    font-size: 25px;
+}
 #homeList{
-    background-color: blanchedalmond;
     list-style-type: none;
+    width: 150%;
+    
+}
+.idk{
+    background-color: blanchedalmond;
+    padding: 3%;
+    height: 10%;
+    width: 50%;
 }
 .noSpace{
     display: inline;
     margin: auto 25px;
-}
-#restartButton{
-    display: flex;
-    height: 20px;
+    width: 25px;
+    text-align: center;
+    border-radius: 20px;
+    font-size: 20px;
+    cursor: pointer;
 
 }
+button.center{
+    display: flex;
+    height: 100px;
+    width: 150px;
+    border: none;
+    border-radius: 20px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    
+
+}
+
 table{
     border: solid;
     margin: auto;
@@ -22,4 +56,16 @@ td{
     width: 100px;
     text-align: center;
     border: solid;
+}
+.space{
+    width: 200px;
+    border: solid;
+    display: inline-block;
+    height: 90px;
+    text-align: center;
+    line-height: 90px;
+    background-color:chartreuse;
+    margin-left: 85px;
+    border-radius: 5px;
+    
 }

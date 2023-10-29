@@ -5,10 +5,16 @@
     <title>Title of the document</title>
   </head>
   <body>
-    <ul id="homeList">
-      <li class="noSpace">Information</li>
-      <li class="noSpace">something else</li>
-    </ul>
+    <div class="idk">
+      <ul id="homeList">
+        <div class="space">
+          <li class="noSpace" id="infoLink" onclick="toggleRules()">Information</li>
+        </div>
+        <div class="space">
+          <li class="noSpace">something</li>
+        </div>
+      </ul>
+    </div>
     <table>
       <tr>
         <td></td>
@@ -26,12 +32,31 @@
         <td></td>
       </tr>
     </table>
-    <button id="restartButton">Restart</button>
+    <button class="center" id="restartButton">Restart</button>
+    <p id="resultMessage"></p>
+    <p id="playerCountX">Player X: 0</p>
+    <p id="playerCountO">Player O: 0</p>
+    <p id="rulesText" style="display: none;">
+      <!-- Information on how to play the game goes here -->
+      Tic-Tac-Toe Rules:<br>
+Objective: The goal of Tic-Tac-Toe is to be the first player to form a line of three of your marks (either "X" or "O") horizontally, vertically, or diagonally on the game board.
+<br>Game Board: Tic-Tac-Toe is played on a 3x3 grid, creating a total of nine spaces for placing your marks.
+<br>Players: The game is typically played by two players. One player uses "X," and the other player uses "O."
+<br>Turns: Players take turns to place their mark on the game board, starting with "X."
+<br>Winning: A player wins the game when they successfully create a line of three of their marks in a row, column, or diagonal. When this happens, the game ends, and the winning player is declared.
+<br>Draw: If all the spaces on the board are filled, and no player has formed a winning line, the game is declared a draw, and it is over.
+<br>Strategy: Players try to block their opponent from forming a winning line while also attempting to create their own winning lines.
+<br>Ending the Game: The game ends when a player wins or when a draw is declared. Players can choose to play multiple rounds.
+<br>Tic-Tac-Toe is a simple yet engaging game that is often used to introduce strategy and critical thinking to players of all ages. The game's straightforward rules make it a popular choice for quick and fun entertainment.
+    </p>
+
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const cells = document.querySelectorAll("td");
         let currentPlayer = "X";
         let gameOver = false;
+        let playerXCount = 0;
+        let playerOCount = 0;
 
         function checkWinner() {
           const winCombinations = [
@@ -53,8 +78,15 @@
               cells[a].textContent === cells[c].textContent
             ) {
               gameOver = true;
-              alert(currentPlayer + " wins!");
+              document.getElementById("resultMessage").textContent = currentPlayer + " wins!";
+              updatePlayerCount();
             }
+          }
+
+          // Check for a draw
+          if (!gameOver && [...cells].every(cell => cell.textContent !== "")) {
+            gameOver = true;
+            document.getElementById("resultMessage").textContent = "It's a Draw!";
           }
         }
 
@@ -62,8 +94,19 @@
           cells.forEach((cell) => {
             cell.textContent = "";
           });
+          document.getElementById("resultMessage").textContent = "";
           currentPlayer = "X";
           gameOver = false;
+        }
+
+        function updatePlayerCount() {
+          if (currentPlayer === "X") {
+            playerXCount++;
+            document.getElementById("playerCountX").textContent = "Player X: " + playerXCount;
+          } else {
+            playerOCount++;
+            document.getElementById("playerCountO").textContent = "Player O: " + playerOCount;
+          }
         }
 
         function handleClick() {
@@ -81,6 +124,15 @@
         const restartButton = document.getElementById("restartButton");
         restartButton.addEventListener("click", restartGame);
       });
+
+      function toggleRules() {
+        const rulesText = document.getElementById("rulesText");
+        if (rulesText.style.display === "none") {
+          rulesText.style.display = "block";
+        } else {
+          rulesText.style.display = "none";
+        }
+      }
     </script>
   </body>
 </html>
