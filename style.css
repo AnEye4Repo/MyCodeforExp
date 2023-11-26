@@ -54,4 +54,16 @@ button{
     font-weight: 600;
     font-size: 18px;
     transition: 200ms transform;
-    color:rgb(12, 12,
+    color:rgb(12, 12, 12);
+}
+button:hover{
+    cursor: pointer;
+    transform: translateY(-2px);
+}
+.playerscore{
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    font-size: 35px;
+}
