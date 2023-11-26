@@ -30,7 +30,7 @@ function boxclicked(e) {
             }
             else{
                 scoreTwo+=1;
-                playerTwoScore.innerHTML = `Player Y Score: ${scoreTwo}`;
+                playerTwoScore.innerHTML = `Player O Score: ${scoreTwo}`;
             }
             let winning_blocks = playerHasWon();
 
