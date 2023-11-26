@@ -3,6 +3,9 @@
     margin: 0;
     box-sizing: border-box;
 }
+:root{
+    --winning-blocks: rgba(140, 0, 255, 0.38);
+}
 body{
     color: rgb(255, 0, 162);
     font-family: 'fira sans', cursive;
@@ -14,7 +17,7 @@ h1{
 .container{
     background-color: bisque;
     padding: 40px;
-    height: 200vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -55,4 +58,9 @@ button{
 button:hover{
     cursor: pointer;
     transform: translateY(-2px);
+}
+.playerscore{
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
 }
