@@ -26,4 +26,10 @@ function displayCatData(catData) {
         <p>Hair: ${catData.hair}</p>
         <p>life Span: ${catData.lifespan}</p>
         <!-- Add more properties as needed -->
-    
+      </div>
+    `;
+  
+    // Append HTML to the container
+    catContainer.innerHTML = catHTML;
+}
+fetchCatData();
