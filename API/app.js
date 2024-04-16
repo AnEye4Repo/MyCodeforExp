@@ -14,4 +14,49 @@ const catData = {
         lifespan: '15 to 20 years',
     },
     japaneseBobtail: {
-   
+        name: 'Japanese Bobtail',
+        hair: 'Short to medium-haired',
+        image: 'https://example.com/japanese_bobtail.jpg',
+    },
+    ragdoll: {
+        name: 'Ragdoll',
+        hair: 'Semi-longhaired',
+        image: 'https://example.com/ragdoll.jpg',
+    },
+    maineCoon: {
+        name: 'Maine Coon',
+        hair: 'Long-haired',
+        image: 'https://example.com/maine_coon.jpg',
+    },
+    sphynx: {
+        name: 'Sphynx',
+        hair: 'Hairless (with a fine down)',
+        image: 'https://example.com/sphynx.jpg',
+    },
+    devonRex: {
+        name: 'Devon Rex',
+        hair: 'Short-haired',
+        image: 'https://example.com/devon_rex.jpg',
+    },
+};
+
+// Define a route to get information about a specific cat breed
+app.get('/api/cat/:breed?', (req, res) => {
+    const { breed } = req.params;
+
+    if (breed) {
+        // Handle request for a specific breed
+        if (catData[breed]) {
+            res.json(catData[breed]);
+        } else {
+            res.status(404).json({ error: 'Breed not found' });
+        }
+    } else {
+        // Handle request for all cat breeds
+        res.json(catData);
+    }
+});
+
+app.listen(port, () => {
+    console.log(`Server is running at http://localhost:${port}`);
+});
